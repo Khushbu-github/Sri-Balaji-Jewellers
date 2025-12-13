@@ -8,6 +8,7 @@ const Dashboard = () => {
     const [images, setImages] = useState([]);
     const [uploading, setUploading] = useState(false);
     const navigate = useNavigate();
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
     const token = localStorage.getItem('adminToken');
     const username = localStorage.getItem('adminUser');
@@ -22,7 +23,7 @@ const Dashboard = () => {
 
     const fetchImages = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/gallery');
+            const res = await axios.get(`${API_BASE_URL}gallery`);
             setImages(res.data);
         } catch (error) {
             console.error(error);
@@ -39,7 +40,7 @@ const Dashboard = () => {
 
         setUploading(true);
         try {
-            await axios.post('http://localhost:5000/gallery/upload', formData, {
+            await axios.post(`${API_BASE_URL}gallery/upload`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -59,7 +60,7 @@ const Dashboard = () => {
         if (!window.confirm('Are you sure you want to delete this image?')) return;
 
         try {
-            await axios.delete(`http://localhost:5000/gallery/${id}`, {
+            await axios.delete(`${API_BASE_URL}gallery/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -171,8 +172,8 @@ const Dashboard = () => {
                                     type="submit"
                                     disabled={!file || uploading}
                                     className={`w-full py-3 rounded-lg font-bold text-white shadow-md transition-all transform active:scale-95 ${!file || uploading
-                                            ? 'bg-gray-400 cursor-not-allowed shadow-none'
-                                            : 'bg-primary hover:bg-yellow-600 hover:shadow-lg'
+                                        ? 'bg-gray-400 cursor-not-allowed shadow-none'
+                                        : 'bg-primary hover:bg-yellow-600 hover:shadow-lg'
                                         }`}
                                 >
                                     {uploading ? (

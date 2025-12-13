@@ -8,8 +8,9 @@ const Gallery = () => {
     useEffect(() => {
         const fetchImages = async () => {
             try {
+                const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
                 // In production, use env variable or configured axios instance
-                const res = await axios.get('http://localhost:5000/gallery');
+                const res = await axios.get(`${API_BASE_URL}gallery`);
                 setImages(res.data);
             } catch (error) {
                 console.error('Error fetching gallery images:', error);

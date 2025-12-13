@@ -12,7 +12,16 @@ configureCloudinary();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://www.sribalajijewellers.co.in",
+    "https://sribalajijewellers.co.in",
+    "https://api.sribalajijewellers.co.in",
+    "http://localhost:5173"
+  ],
+  credentials: true
+}));
+
 
 // Routes
 app.use('/auth', require('./routes/auth'));

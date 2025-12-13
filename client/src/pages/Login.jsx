@@ -8,11 +8,13 @@ const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             // In production, use env variable
-            const res = await axios.post('http://localhost:5000/auth/login', { username, password });
+            const res = await axios.post(`${API_BASE_URL}auth/login`, { username, password });
             localStorage.setItem('adminToken', res.data.token);
             localStorage.setItem('adminUser', res.data.username);
             navigate('/dashboard');
