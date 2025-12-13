@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-secondary text-dark;
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+.btn-primary {
+  @apply bg-primary text-white px-6 py-2 rounded-md hover:bg-yellow-600 transition-colors duration-300 shadow-md;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-center mb-12 relative;
+}
+
+.section-title::after {
+  content: '';
+  @apply absolute block w-24 h-1 bg-primary left-1/2 -translate-x-1/2 bottom-[-10px];
+}
