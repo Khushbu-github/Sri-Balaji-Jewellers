@@ -1,14 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   @apply bg-secondary text-dark;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Mulish', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  @apply font-serif;
+}
+
+.slick-dots {
+  bottom: 25px !important;
+}
+
+.slick-dots li button:before {
+  color: white !important;
+  font-size: 12px !important;
+  opacity: 0.7 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #D4AF37 !important; /* Gold color */
+  opacity: 1 !important;
+}
+
+.slick-prev, .slick-next {
+  z-index: 50;
+  width: 40px;
+  height: 40px;
+}
+.slick-prev {
+  left: 20px !important;
+}
+.slick-next {
+  right: 20px !important;
+}
+.slick-prev:before, .slick-next:before {
+  font-size: 40px !important;
+  color: white !important;
+  opacity: 0.8 !important;
+}
+.slick-prev:hover:before, .slick-next:hover:before {
+  color: #D4AF37 !important;
+  opacity: 1 !important;
 }
 
 .btn-primary {

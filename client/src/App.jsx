@@ -6,6 +6,7 @@ import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
+import About from './pages/About';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
 
           {/* Admin Routes */}
