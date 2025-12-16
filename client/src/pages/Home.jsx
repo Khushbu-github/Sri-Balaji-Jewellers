@@ -125,33 +125,32 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+{/* Silver Collection */}
+<div className="py-8 sm:py-12 md:py-16 bg-white">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="section-title">Silver Collection</h2>
+        <p className="text-gray-600 text-sm sm:text-base mt-3 sm:mt-4 max-w-2xl mx-auto px-4">
+            Where tradition meets silver sophistication!
+        </p>
 
-            {/* Silver Collection */}
-            <div className="py-16 bg-white">
-                <div className="max-w-7xl mx-auto px-4 text-center">
-                    <h2 className="section-title">Silver Collection</h2>
-                    <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-                        Where tradition meets silver sophistication!
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-                        <div className="relative overflow-hidden group cursor-pointer rounded-lg h-[400px]">
-                            <img
-                                src={Silver1}
-                                alt="Silver Collection 1"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                        </div>
-                        <div className="relative overflow-hidden group cursor-pointer rounded-lg h-[400px]">
-                            <img
-                                src={Silver2}
-                                alt="Silver Collection 2"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                        </div>
-                    </div>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-8 md:mt-10">
+            <div className="relative overflow-hidden group cursor-pointer rounded-lg h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
+                <img
+                    src={Silver1}
+                    alt="Silver Collection 1"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
             </div>
+            <div className="relative overflow-hidden group cursor-pointer rounded-lg h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
+                <img
+                    src={Silver2}
+                    alt="Silver Collection 2"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+            </div>
+        </div>
+    </div>
+</div>
 
             {/* Earring Collection */}
             <div className="py-16 bg-white">
