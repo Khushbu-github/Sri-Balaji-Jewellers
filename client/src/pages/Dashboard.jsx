@@ -3,12 +3,16 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-    const [file, setFile] = useState(null);
+    const [files, setFiles] = useState([]);
     const [category, setCategory] = useState('General');
     const [images, setImages] = useState([]);
     const [uploading, setUploading] = useState(false);
     const navigate = useNavigate();
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+    let API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+    API_BASE_URL = API_BASE_URL.trim();
+    if (!API_BASE_URL.endsWith('/')) {
+        API_BASE_URL += '/';
+    }
 
     const token = localStorage.getItem('adminToken');
     const username = localStorage.getItem('adminUser');
@@ -32,10 +36,16 @@ const Dashboard = () => {
 
     const handleUpload = async (e) => {
         e.preventDefault();
-        if (!file) return;
+        if (!files || files.length === 0) return;
+        if (files.length > 10) {
+            alert("You can only upload up to 10 images at a time");
+            return;
+        }
 
         const formData = new FormData();
-        formData.append('image', file);
+        for (let i = 0; i < files.length; i++) {
+            formData.append('images', files[i]);
+        }
         formData.append('category', category);
 
         setUploading(true);
@@ -45,9 +55,9 @@ const Dashboard = () => {
                     Authorization: `Bearer ${token}`
                 }
             });
-            setFile(null);
+            setFiles([]);
             fetchImages();
-            alert('Image uploaded successfully!');
+            alert('Images uploaded successfully!');
         } catch (error) {
             console.error(error);
             alert('Upload failed');
@@ -142,19 +152,22 @@ const Dashboard = () => {
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Select Image</label>
-                                    <div className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${file ? 'border-primary bg-primary/5' : 'border-gray-300 hover:border-primary hover:bg-gray-50'}`}>
+                                    <div className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${files.length > 0 ? 'border-primary bg-primary/5' : 'border-gray-300 hover:border-primary hover:bg-gray-50'}`}>
                                         <input
                                             type="file"
-                                            onChange={(e) => setFile(e.target.files[0])}
+                                            multiple
+                                            onChange={(e) => setFiles(Array.from(e.target.files))}
                                             className="hidden"
                                             id="file-upload"
                                             accept="image/*"
                                         />
-                                        <label htmlFor="file-upload" className="cursor-pointer block w-full h-full">
-                                            {file ? (
+                                        <label htmlFor="file-upload" className="cursor-pointer block w-full h-full flex items-center justify-center">
+                                            {files.length > 0 ? (
                                                 <div className="text-primary font-medium flex flex-col items-center">
                                                     <svg className="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                                                    <span className="truncate max-w-[200px]">{file.name}</span>
+                                                    <span className="truncate max-w-[200px] text-center">
+                                                        {files.length} file{files.length > 1 ? 's' : ''} selected
+                                                    </span>
                                                     <span className="text-xs text-gray-500 mt-1">Click to change</span>
                                                 </div>
                                             ) : (
@@ -170,8 +183,8 @@ const Dashboard = () => {
 
                                 <button
                                     type="submit"
-                                    disabled={!file || uploading}
-                                    className={`w-full py-3 rounded-lg font-bold text-white shadow-md transition-all transform active:scale-95 ${!file || uploading
+                                    disabled={files.length === 0 || uploading}
+                                    className={`w-full py-3 rounded-lg font-bold text-white shadow-md transition-all transform active:scale-95 ${files.length === 0 || uploading
                                         ? 'bg-gray-400 cursor-not-allowed shadow-none'
                                         : 'bg-primary hover:bg-yellow-600 hover:shadow-lg'
                                         }`}

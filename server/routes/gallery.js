@@ -38,27 +38,44 @@ router.get('/', async (req, res) => {
 // @route   POST /gallery/upload
 // @desc    Upload new image
 // @access  Private
-router.post('/upload', authMiddleware, upload.single('image'), async (req, res) => {
+router.post('/upload', authMiddleware, upload.array('images', 10), async (req, res) => {
     try {
-        if (!req.file) {
-            return res.status(400).json({ message: 'No image uploaded' });
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).json({ message: 'No images uploaded' });
         }
 
-        const result = await cloudinary.uploader.upload(req.file.path, {
-            folder: 'sribalaji'
+        const uploadPromises = req.files.map(async (file) => {
+            try {
+                const result = await cloudinary.uploader.upload(file.path, {
+                    folder: 'sribalaji'
+                });
+
+                // Delete local file after upload
+                fs.unlinkSync(file.path);
+
+                const newImage = new Gallery({
+                    imageUrl: result.secure_url,
+                    publicId: result.public_id,
+                    category: req.body.category || 'General'
+                });
+
+                return await newImage.save();
+            } catch (err) {
+                console.error('Error uploading file:', file.originalname, err);
+                // Try to delete local file if upload failed
+                if (fs.existsSync(file.path)) fs.unlinkSync(file.path);
+                return null; 
+            }
         });
 
-        // Delete local file after upload
-        fs.unlinkSync(req.file.path);
+        const savedImages = await Promise.all(uploadPromises);
+        const successfulUploads = savedImages.filter(img => img !== null);
 
-        const newImage = new Gallery({
-            imageUrl: result.secure_url,
-            publicId: result.public_id,
-            category: req.body.category || 'General'
-        });
+        if (successfulUploads.length === 0) {
+             return res.status(500).json({ message: 'All uploads failed' });
+        }
 
-        const savedImage = await newImage.save();
-        res.status(201).json(savedImage);
+        res.status(201).json(successfulUploads);
 
     } catch (error) {
         console.error(error);
