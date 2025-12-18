@@ -204,19 +204,7 @@ const Home = () => {
 
       {/* Hero Section Carousel */}
       <div className="relative w-full bg-dark overflow-hidden">
-        <div className="hidden md:block">
-          <Slider {...settings} className="w-full">
-            {desktopSlides.map((slide, index) => (
-              <div key={index} className="relative w-full outline-none">
-                <img
-                  src={slide.image}
-                  alt={`Slide ${index + 1}`}
-                  className="w-full h-auto object-contain"
-                />
-              </div>
-            ))}
-          </Slider>
-        </div>
+        
         
         <div className="block md:hidden">
           <Slider {...settings} className="w-full">
