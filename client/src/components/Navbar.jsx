@@ -10,7 +10,7 @@ const Navbar = () => {
         { name: 'Home', path: '/' },
         { name: 'Products', path: '/products' },
         { name: 'Gallery', path: '/gallery' },
-        { name: 'About', path: '/about' }, // Added About Link logic later if needed or redirect to Home section
+        { name: 'About', path: '/about' },
         { name: 'Contact', path: '/contact' },
         { name: 'Admin', path: '/login' },
     ];
@@ -18,12 +18,15 @@ const Navbar = () => {
     const isActive = (path) => location.pathname === path;
 
     return (
-        <nav className="bg-secondary shadow-md sticky top-0 z-50">
+        <nav className="shadow-lg sticky top-0 z-50" style={{ backgroundColor: 'rgb(82, 32, 30)' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-20">
                     <div className="flex items-center">
-                        <Link to="/" className="flex items-center gap-2">
+                        <Link to="/" className="flex items-center gap-3">
                             <img src={logo} alt="Sri Balaji Jewellers" className="h-16 w-auto object-contain" />
+                            <span className="text-xl md:text-2xl font-bold" style={{ color: '#FFD700' }}>
+                                Sri Balaji Jewellers
+                            </span>
                         </Link>
                     </div>
 
@@ -33,8 +36,11 @@ const Navbar = () => {
                             <Link
                                 key={link.name}
                                 to={link.path}
-                                className={`text-lg font-medium transition-colors duration-300 ${isActive(link.path) ? 'text-primary' : 'text-gray-700 hover:text-primary'
-                                    }`}
+                                className={`text-lg font-medium transition-colors duration-300 ${
+                                    isActive(link.path) 
+                                        ? 'text-amber-300' 
+                                        : 'text-gray-100 hover:text-amber-300'
+                                }`}
                             >
                                 {link.name}
                             </Link>
@@ -45,7 +51,7 @@ const Navbar = () => {
                     <div className="md:hidden flex items-center">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="text-gray-700 hover:text-primary focus:outline-none"
+                            className="text-gray-100 hover:text-amber-300 focus:outline-none"
                         >
                             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 {isOpen ? (
@@ -62,16 +68,24 @@ const Navbar = () => {
             {/* Mobile Menu */}
             {isOpen && (
                 <div className="md:hidden">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
+                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3" style={{ backgroundColor: 'rgb(72, 22, 20)' }}>
                         {links.map((link) => (
                             <Link
                                 key={link.name}
                                 to={link.path}
                                 onClick={() => setIsOpen(false)}
-                                className={`block px-3 py-2 rounded-md text-base font-medium ${isActive(link.path)
-                                    ? 'text-primary bg-secondary'
-                                    : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-                                    }`}
+                                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                    isActive(link.path)
+                                        ? 'text-amber-300'
+                                        : 'text-gray-100 hover:text-amber-300'
+                                }`}
+                                style={isActive(link.path) ? { backgroundColor: 'rgb(62, 12, 10)' } : {}}
+                                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgb(62, 12, 10)'}
+                                onMouseLeave={(e) => {
+                                    if (!isActive(link.path)) {
+                                        e.currentTarget.style.backgroundColor = 'transparent';
+                                    }
+                                }}
                             >
                                 {link.name}
                             </Link>

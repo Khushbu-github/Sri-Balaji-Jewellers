@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import Banner1 from '../assets/Banner1.png';
 import Banner2 from '../assets/Banner2.png';
 import Banner3 from '../assets/Banner3.png';
@@ -10,43 +11,187 @@ import Gold1 from '../assets/Gold1.png';
 import Slider from 'react-slick';
 
 const About = () => {
-    const settings = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 1500,
-            fade: true,
-            cssEase: 'linear',
-            arrows: true,
+    const [visibleSections, setVisibleSections] = useState(new Set());
+    const sectionRefs = useRef([]);
+
+    useEffect(() => {
+        const observers = [];
+        
+        sectionRefs.current.forEach((ref, index) => {
+            if (ref) {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                setVisibleSections(prev => new Set([...prev, index]));
+                            }
+                        });
+                    },
+                    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+                );
+                
+                observer.observe(ref);
+                observers.push(observer);
+            }
+        });
+
+        return () => {
+            observers.forEach(observer => observer.disconnect());
         };
-    
-        const slides = [
-            {
-                image: Banner1,
-                title: "UNIQUE",
-                subtitle: "JEWELRY FOR UNIQUE YOU",
-                align: "justify-end text-center"
-            },
-            {
-                image: Banner2,
-                title: "DREAM DESTINATION",
-                subtitle: "FOR WEDDING JEWELLERY SHOPPING",
-                align: "justify-start text-left"
-            },
-            {
-                image: Banner3,
-                title: "WHY SETTLE FOR LIMITED OPTIONS?",
-                subtitle: "CREATE YOUR OWN DESIGNS",
-                align: "justify-start text-left"
-            },
-    
-        ];
+    }, []);
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        fade: true,
+        cssEase: 'linear',
+        arrows: true,
+    };
+
+    const slides = [
+        {
+            image: Banner1,
+            title: "UNIQUE",
+            subtitle: "JEWELRY FOR UNIQUE YOU",
+            align: "justify-end text-center"
+        },
+        {
+            image: Banner2,
+            title: "DREAM DESTINATION",
+            subtitle: "FOR WEDDING JEWELLERY SHOPPING",
+            align: "justify-start text-left"
+        },
+        {
+            image: Banner3,
+            title: "WHY SETTLE FOR LIMITED OPTIONS?",
+            subtitle: "CREATE YOUR OWN DESIGNS",
+            align: "justify-start text-left"
+        },
+    ];
+
     return (
         <div className="min-h-screen bg-gray-50">
-          {/* Hero Section Carousel */}
+            <style>{`
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(40px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes fadeInLeft {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-40px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                @keyframes fadeInRight {
+                    from {
+                        opacity: 0;
+                        transform: translateX(40px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                @keyframes scaleIn {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.9);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }
+
+                .animate-section {
+                    opacity: 0;
+                }
+
+                .animate-section.visible {
+                    animation: fadeInUp 0.8s ease-out forwards;
+                }
+
+                .animate-left {
+                    opacity: 0;
+                }
+
+                .animate-left.visible {
+                    animation: fadeInLeft 0.7s ease-out forwards;
+                }
+
+                .animate-right {
+                    opacity: 0;
+                }
+
+                .animate-right.visible {
+                    animation: fadeInRight 0.7s ease-out forwards;
+                }
+
+                .animate-scale {
+                    opacity: 0;
+                }
+
+                .animate-scale.visible {
+                    animation: scaleIn 0.6s ease-out forwards;
+                }
+
+                .stagger-1 {
+                    animation-delay: 0.1s;
+                }
+
+                .stagger-2 {
+                    animation-delay: 0.2s;
+                }
+
+                .stagger-3 {
+                    animation-delay: 0.3s;
+                }
+
+                .stagger-4 {
+                    animation-delay: 0.4s;
+                }
+
+                .text-stagger-1 {
+                    animation-delay: 0.15s;
+                }
+
+                .text-stagger-2 {
+                    animation-delay: 0.25s;
+                }
+
+                .text-stagger-3 {
+                    animation-delay: 0.35s;
+                }
+            `}</style>
+
+            {/* Hero Section Carousel */}
             <div className="relative w-full bg-dark overflow-hidden flex justify-center">
                 <div className="w-full max-w-[1248px]">
                     <Slider {...settings} className="w-full">
@@ -66,12 +211,16 @@ const About = () => {
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
                 {/* Our Story */}
-                <div className="mb-20">
-                    <h2 className="text-4xl font-serif font-bold text-dark mb-8 text-center">Our Story</h2>
+                <div 
+                    ref={el => sectionRefs.current[0] = el}
+                    className="mb-20"
+                >
+                    <h2 className={`text-4xl font-serif font-bold text-dark mb-8 text-center animate-section ${visibleSections.has(0) ? 'visible' : ''}`}>
+                        Our Story
+                    </h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div>
+                        <div className={`animate-left ${visibleSections.has(0) ? 'visible' : ''}`}>
                             <img
                                 src={C2}
                                 alt="Sri Balaji Jewellers Store"
@@ -79,13 +228,13 @@ const About = () => {
                             />
                         </div>
                         <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
-                            <p>
-                                Welcome to <span className="font-bold text-primary">Sri Balaji Jewellers</span>, your trusted destination for exquisite gold, silver, and diamond jewellery in Bengaluru. We have been dedicated to bringing you the finest craftsmanship and certified purity in every piece we create.
+                            <p className={`animate-right ${visibleSections.has(0) ? 'visible' : ''} text-stagger-1`}>
+                                Welcome to <span className="font-bold text-primary">Sri Balaji Jewellers</span>, your trusted destination for exquisite gold, silver, and diamond jewellery in Bengaluru. Founded by <span className="font-bold text-primary">Darshan Milak</span> and <span className="font-bold text-primary">Namratha Milak</span>, we have been dedicated to bringing you the finest craftsmanship and certified purity in every piece we create.
                             </p>
-                            <p>
+                            <p className={`animate-right ${visibleSections.has(0) ? 'visible' : ''} text-stagger-2`}>
                                 Located in the heart of Kumaraswamy Layout, our showroom at Yashaswini Arcade has become a landmark for quality jewellery and exceptional customer service. We take pride in our legacy of trust, transparency, and timeless designs that celebrate every precious moment of your life.
                             </p>
-                            <p>
+                            <p className={`animate-right ${visibleSections.has(0) ? 'visible' : ''} text-stagger-3`}>
                                 Our commitment to excellence is reflected in every piece of jewellery we offer. From traditional South Indian designs to contemporary styles, we cater to diverse tastes and occasions, ensuring that each customer finds something truly special.
                             </p>
                         </div>
@@ -93,12 +242,14 @@ const About = () => {
                 </div>
 
                 {/* Our Collections */}
-                <div className="mb-20 bg-white p-12 rounded-xl shadow-lg">
+                <div 
+                    ref={el => sectionRefs.current[1] = el}
+                    className={`mb-20 bg-white p-12 rounded-xl shadow-lg animate-section ${visibleSections.has(1) ? 'visible' : ''}`}
+                >
                     <h2 className="text-4xl font-serif font-bold text-dark mb-12 text-center">Our Collections</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
                         {/* Gold Jewellery */}
-                        <div className="text-center group">
+                        <div className={`text-center group animate-scale ${visibleSections.has(1) ? 'visible' : ''} stagger-1`}>
                             <div className="overflow-hidden rounded-lg mb-4 shadow-md">
                                 <img
                                     src={Gold1}
@@ -113,7 +264,7 @@ const About = () => {
                         </div>
 
                         {/* Silver Collection */}
-                        <div className="text-center group">
+                        <div className={`text-center group animate-scale ${visibleSections.has(1) ? 'visible' : ''} stagger-2`}>
                             <div className="overflow-hidden rounded-lg mb-4 shadow-md">
                                 <img
                                     src={Silver1}
@@ -128,7 +279,7 @@ const About = () => {
                         </div>
 
                         {/* Diamond Jewellery */}
-                        <div className="text-center group">
+                        <div className={`text-center group animate-scale ${visibleSections.has(1) ? 'visible' : ''} stagger-3`}>
                             <div className="overflow-hidden rounded-lg mb-4 shadow-md">
                                 <img
                                     src={C1}
@@ -145,11 +296,15 @@ const About = () => {
                 </div>
 
                 {/* Why Choose Us */}
-                <div className="mb-20">
-                    <h2 className="text-4xl font-serif font-bold text-dark mb-12 text-center">Why Choose Us</h2>
+                <div 
+                    ref={el => sectionRefs.current[2] = el}
+                    className="mb-20"
+                >
+                    <h2 className={`text-4xl font-serif font-bold text-dark mb-12 text-center animate-section ${visibleSections.has(2) ? 'visible' : ''}`}>
+                        Why Choose Us
+                    </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                        <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-shadow">
+                        <div className={`bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-shadow animate-scale ${visibleSections.has(2) ? 'visible' : ''} stagger-1`}>
                             <div className="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -159,7 +314,7 @@ const About = () => {
                             <p className="text-gray-600">Serving customers with integrity and excellence for generations</p>
                         </div>
 
-                        <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-shadow">
+                        <div className={`bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-shadow animate-scale ${visibleSections.has(2) ? 'visible' : ''} stagger-2`}>
                             <div className="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -169,7 +324,7 @@ const About = () => {
                             <p className="text-gray-600">100% hallmarked and certified jewellery with guaranteed quality</p>
                         </div>
 
-                        <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-shadow">
+                        <div className={`bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-shadow animate-scale ${visibleSections.has(2) ? 'visible' : ''} stagger-3`}>
                             <div className="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
@@ -179,7 +334,7 @@ const About = () => {
                             <p className="text-gray-600">Skilled artisans creating masterpieces with attention to detail</p>
                         </div>
 
-                        <div className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-shadow">
+                        <div className={`bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-shadow animate-scale ${visibleSections.has(2) ? 'visible' : ''} stagger-4`}>
                             <div className="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
@@ -192,7 +347,10 @@ const About = () => {
                 </div>
 
                 {/* Visit Us */}
-                <div className="bg-gradient-to-r from-primary to-yellow-600 text-white p-12 rounded-xl shadow-2xl">
+                <div 
+                    ref={el => sectionRefs.current[3] = el}
+                    className={`bg-gradient-to-r from-primary to-yellow-600 text-white p-12 rounded-xl shadow-2xl animate-section ${visibleSections.has(3) ? 'visible' : ''}`}
+                >
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         <div>
                             <h2 className="text-4xl font-serif font-bold mb-6">Visit Our Showroom</h2>
@@ -260,7 +418,6 @@ const About = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );
