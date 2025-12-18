@@ -77,8 +77,8 @@ const Home = () => {
 
   const mobileSlides = [
     { image: Gold1 },
-    { image: B1 },
-    { image: B2 },
+    { image: Gold2 },
+    { image: Gold3 },
   ];
 
   return (
