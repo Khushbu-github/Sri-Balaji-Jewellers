@@ -276,9 +276,7 @@ const Home = () => {
                 className="w-full h-96 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                <button className="bg-white text-gray-800 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-                  View Details
-                </button>
+             
               </div>
             </div>
             
@@ -289,9 +287,7 @@ const Home = () => {
                 className="w-full h-96 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                <button className="bg-white text-gray-800 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-                  View Details
-                </button>
+               
               </div>
             </div>
           </div>
@@ -343,11 +339,7 @@ const Home = () => {
                   alt={`Gold ${index + 1}`} 
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                  <button className="bg-white text-amber-900 px-4 py-2 rounded-full text-sm font-semibold hover:bg-amber-50 transition-colors">
-                    Explore
-                  </button>
-                </div>
+               
               </div>
             ))}
           </div>
