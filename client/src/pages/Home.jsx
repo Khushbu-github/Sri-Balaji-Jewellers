@@ -20,6 +20,8 @@ import Earing2 from '../assets/Earing2.png';
 import Earing3 from '../assets/Earing3.png';
 import Earing4 from '../assets/Earing4.png';
 import Gold1 from '../assets/Gold1.png';
+import B1 from '../assets/B1.png';
+import B2 from '../assets/B2.png';
 import Gold2 from '../assets/Gold2.png';
 import Gold3 from '../assets/Gold3.png';
 import Gold4 from '../assets/Gold4.png';
@@ -75,8 +77,8 @@ const Home = () => {
 
   const mobileSlides = [
     { image: Gold1 },
-    { image: Gold2 },
-    { image: Gold3 },
+    { image: B1 },
+    { image: B2 },
   ];
 
   return (
