@@ -539,6 +539,14 @@ const Home = () => {
               arrows: true,
               responsive: [
                 {
+                  breakpoint: 1280,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    arrows: true,
+                  }
+                },
+                {
                   breakpoint: 1024,
                   settings: {
                     slidesToShow: 2,
@@ -547,19 +555,29 @@ const Home = () => {
                   }
                 },
                 {
-                  breakpoint: 640,
+                  breakpoint: 768,
                   settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     arrows: false,
                     dots: true,
                   }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    dots: true,
+                    centerMode: false
+                  }
                 }
               ]
             }}>
               {/* Testimonial 1 */}
-              <div className="px-2 sm:px-3 py-4 sm:py-6">
-                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+              <div className="px-2 sm:px-4 py-4 sm:py-6">
+                <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative min-h-[320px] sm:min-h-[300px] flex flex-col mx-1">
                   <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
                     <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
                       "
@@ -588,8 +606,8 @@ const Home = () => {
               </div>
 
               {/* Testimonial 2 */}
-              <div className="px-2 sm:px-3 py-4 sm:py-6">
-                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+              <div className="px-2 sm:px-4 py-4 sm:py-6">
+                <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative min-h-[320px] sm:min-h-[300px] flex flex-col mx-1">
                   <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
                     <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
                       "
@@ -618,8 +636,8 @@ const Home = () => {
               </div>
 
               {/* Testimonial 3 */}
-              <div className="px-2 sm:px-3 py-4 sm:py-6">
-                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+              <div className="px-2 sm:px-4 py-4 sm:py-6">
+                <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative min-h-[320px] sm:min-h-[300px] flex flex-col mx-1">
                   <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
                     <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
                       "
@@ -648,8 +666,8 @@ const Home = () => {
               </div>
 
               {/* Testimonial 4 */}
-              <div className="px-2 sm:px-3 py-4 sm:py-6">
-                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+              <div className="px-2 sm:px-4 py-4 sm:py-6">
+                <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative min-h-[320px] sm:min-h-[300px] flex flex-col mx-1">
                   <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
                     <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
                       "
@@ -678,8 +696,8 @@ const Home = () => {
               </div>
 
               {/* Testimonial 5 */}
-              <div className="px-2 sm:px-3 py-4 sm:py-6">
-                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+              <div className="px-2 sm:px-4 py-4 sm:py-6">
+                <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative min-h-[320px] sm:min-h-[300px] flex flex-col mx-1">
                   <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
                     <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
                       "
@@ -708,8 +726,8 @@ const Home = () => {
               </div>
 
               {/* Testimonial 6 */}
-              <div className="px-2 sm:px-3 py-4 sm:py-6">
-                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+              <div className="px-2 sm:px-4 py-4 sm:py-6">
+                <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative min-h-[320px] sm:min-h-[300px] flex flex-col mx-1">
                   <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
                     <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
                       "
