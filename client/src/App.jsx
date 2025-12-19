@@ -51,15 +51,15 @@ function App() {
 
       {/* Floating Contact Buttons */}
       {!isAdminRoute && (
-        <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+        <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 flex flex-col gap-2 sm:gap-3 z-50">
           {/* WhatsApp Button */}
           <button
             onClick={handleWhatsAppClick}
-            className="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-110 group"
+            className="bg-green-500 hover:bg-green-600 text-white rounded-full p-3 sm:p-4 shadow-lg transition-all duration-300 hover:scale-110 group"
             aria-label="Contact via WhatsApp"
           >
-            <MessageCircle className="w-6 h-6" />
-            <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-3 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+            <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="hidden sm:block absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-3 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
               WhatsApp
             </span>
           </button>
@@ -67,11 +67,11 @@ function App() {
           {/* Phone Button */}
           <button
             onClick={handlePhoneClick}
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-110 group"
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-3 sm:p-4 shadow-lg transition-all duration-300 hover:scale-110 group"
             aria-label="Call us"
           >
-            <Phone className="w-6 h-6" />
-            <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-3 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+            <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="hidden sm:block absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-3 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
               Call Now
             </span>
           </button>
