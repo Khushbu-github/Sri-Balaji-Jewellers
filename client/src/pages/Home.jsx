@@ -215,7 +215,7 @@ const Home = () => {
                 <img
                   src={slide.image}
                   alt={`Mobile Slide ${index + 1}`}
-                  className="w-full h-auto object-contain"
+                  className="w-full h-[400px] object-cover"
                 />
               </div>
             ))}
