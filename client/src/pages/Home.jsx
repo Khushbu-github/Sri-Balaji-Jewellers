@@ -528,56 +528,36 @@ const Home = () => {
 
           {/* Testimonials Slider */}
           <div className="pb-8 sm:pb-10 md:pb-12">
-            <Slider {...{
-              dots: true,
-              infinite: true,
-              speed: 500,
-              slidesToShow: 3,
-              slidesToScroll: 1,
-              autoplay: true,
-              autoplaySpeed: 3500,
-              arrows: true,
-              responsive: [
-                {
-                  breakpoint: 1280,
-                  settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    arrows: true,
-                  }
-                },
+            <Slider
+              dots={true}
+              infinite={true}
+              speed={500}
+              slidesToShow={3}
+              slidesToScroll={1}
+              autoplay={true}
+              autoplaySpeed={3500}
+              arrows={true}
+              responsive={[
                 {
                   breakpoint: 1024,
                   settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                    arrows: true,
                   }
                 },
                 {
-                  breakpoint: 768,
+                  breakpoint: 640,
                   settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     arrows: false,
-                    dots: true,
-                  }
-                },
-                {
-                  breakpoint: 480,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    arrows: false,
-                    dots: true,
-                    centerMode: false
                   }
                 }
-              ]
-            }}>
+              ]}
+            >
               {/* Testimonial 1 */}
               <div className="px-1 sm:px-4 py-3 sm:py-6">
-                <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative min-h-[220px] sm:min-h-[300px] flex flex-col mx-0.5">
+                <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-300 relative min-h-[220px] sm:min-h-[300px] flex flex-col mx-0.5 h-full">
                   <div className="absolute -top-2 sm:-top-4 left-4 sm:left-6">
                     <div className="bg-amber-400 text-white w-8 h-8 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-2xl font-bold shadow-md">
                       "
