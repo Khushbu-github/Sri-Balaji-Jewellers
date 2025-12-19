@@ -22,21 +22,29 @@ import Kid4 from '../assets/Kid4.png';
 const Products = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const initialCategory = queryParams.get('category') || 'All';
+    const initialCategory = queryParams.get('category') || 'Gold';
 
     const [selectedCategory, setSelectedCategory] = useState(initialCategory);
     const [selectedGender, setSelectedGender] = useState('Women');
     const [visibleSections, setVisibleSections] = useState(new Set());
     const [animateProducts, setAnimateProducts] = useState(false);
-    
+
     const sectionRefs = useRef([]);
     const productsRef = useRef(null);
 
-    const categories = ['All', 'Gold', 'Silver', 'Diamond'];
+    const categories = ['Gold', 'Silver', 'Diamond'];
+
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const category = queryParams.get('category');
+        if (category && categories.includes(category)) {
+            setSelectedCategory(category);
+        }
+    }, [location.search]);
 
     useEffect(() => {
         const observers = [];
-        
+
         sectionRefs.current.forEach((ref, index) => {
             if (ref) {
                 const observer = new IntersectionObserver(
@@ -49,7 +57,7 @@ const Products = () => {
                     },
                     { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
                 );
-                
+
                 observer.observe(ref);
                 observers.push(observer);
             }
@@ -67,7 +75,7 @@ const Products = () => {
                 },
                 { threshold: 0.05 }
             );
-            
+
             productObserver.observe(productsRef.current);
             observers.push(productObserver);
         }
@@ -84,7 +92,6 @@ const Products = () => {
     }, [selectedCategory]);
 
     const filteredProducts = useMemo(() => {
-        if (selectedCategory === 'All') return products;
         return products.filter(p => p.category === selectedCategory);
     }, [selectedCategory]);
 
@@ -260,71 +267,10 @@ const Products = () => {
             `}</style>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Shop By Gender Section */}
-                <div 
-                    ref={el => sectionRefs.current[0] = el}
-                    className="mb-16"
-                >
-                    <div className="text-center mb-8">
-                        <h2 className="text-4xl font-serif font-bold text-dark mb-8 animate-header">
-                            Shop By Gender
-                        </h2>
-
-                        {/* Gender Tabs */}
-                        <div className="flex justify-center items-center gap-2 text-2xl font-serif mb-12 animate-tabs">
-                            <span
-                                onClick={() => setSelectedGender('Women')}
-                                className={`cursor-pointer transition-colors ${selectedGender === 'Women'
-                                        ? 'text-primary font-bold'
-                                        : 'text-gray-600 hover:text-primary hover:underline'
-                                    }`}
-                            >
-                                Women's Jewellery
-                            </span>
-                            <span className="text-gray-400">|</span>
-                            <span
-                                onClick={() => setSelectedGender('Men')}
-                                className={`cursor-pointer transition-colors ${selectedGender === 'Men'
-                                        ? 'text-primary font-bold'
-                                        : 'text-gray-600 hover:text-primary hover:underline'
-                                    }`}
-                            >
-                                Men's Jewellery
-                            </span>
-                            <span className="text-gray-400">|</span>
-                            <span
-                                onClick={() => setSelectedGender('Kids')}
-                                className={`cursor-pointer transition-colors ${selectedGender === 'Kids'
-                                        ? 'text-primary font-bold'
-                                        : 'text-gray-600 hover:text-primary hover:underline'
-                                    }`}
-                            >
-                                Kids Jewellery
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* Gender Images */}
-                    <div className="mb-12">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            {genderImages[selectedGender].map((img, index) => (
-                                <div 
-                                    key={`${selectedGender}-${index}`} 
-                                    className={`relative overflow-hidden group cursor-pointer rounded-lg aspect-[403/423] gender-image animate delay-${index + 1}`}
-                                >
-                                    <img
-                                        src={img}
-                                        alt={`${selectedGender} Jewellery ${index + 1}`}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                
 
                 {/* Our Collection Section */}
-                <div 
+                <div
                     ref={el => sectionRefs.current[1] = el}
                     className={`text-center mb-12 animate-section ${visibleSections.has(1) ? 'visible' : ''}`}
                 >
@@ -335,7 +281,7 @@ const Products = () => {
                 </div>
 
                 {/* Filters */}
-                <div 
+                <div
                     ref={el => sectionRefs.current[2] = el}
                     className="flex justify-center mb-12 flex-wrap gap-4"
                 >
@@ -353,36 +299,19 @@ const Products = () => {
                     ))}
                 </div>
 
-                {/* Products Grid */}
                 <div ref={productsRef}>
-                    {selectedCategory === 'All' ? (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {[...goldImages, ...diamondImages, ...silverImages].map((img, index) => (
-                                <div 
-                                    key={`all-${index}`} 
-                                    className={`aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 product-item ${animateProducts ? 'animate' : ''} stagger-${(index % 8) + 1}`}
-                                >
-                                    <img 
-                                        src={img} 
-                                        alt={`Product ${index}`} 
-                                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" 
-                                        loading="lazy" 
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    ) : selectedCategory === 'Gold' ? (
+                    {selectedCategory === 'Gold' ? (
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {goldImages.map((img, index) => (
-                                <div 
-                                    key={`gold-${index}`} 
+                                <div
+                                    key={`gold-${index}`}
                                     className={`aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 product-item ${animateProducts ? 'animate' : ''} stagger-${(index % 8) + 1}`}
                                 >
-                                    <img 
-                                        src={img} 
-                                        alt={`Gold Product ${index}`} 
-                                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" 
-                                        loading="lazy" 
+                                    <img
+                                        src={img}
+                                        alt={`Gold Product ${index}`}
+                                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                        loading="lazy"
                                     />
                                 </div>
                             ))}
@@ -390,15 +319,15 @@ const Products = () => {
                     ) : selectedCategory === 'Silver' ? (
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {silverImages.map((img, index) => (
-                                <div 
-                                    key={`silver-${index}`} 
+                                <div
+                                    key={`silver-${index}`}
                                     className={`aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 product-item ${animateProducts ? 'animate' : ''} stagger-${(index % 8) + 1}`}
                                 >
-                                    <img 
-                                        src={img} 
-                                        alt={`Silver Product ${index}`} 
-                                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" 
-                                        loading="lazy" 
+                                    <img
+                                        src={img}
+                                        alt={`Silver Product ${index}`}
+                                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                        loading="lazy"
                                     />
                                 </div>
                             ))}
@@ -406,15 +335,15 @@ const Products = () => {
                     ) : selectedCategory === 'Diamond' ? (
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {diamondImages.map((img, index) => (
-                                <div 
-                                    key={`diamond-${index}`} 
+                                <div
+                                    key={`diamond-${index}`}
                                     className={`aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 product-item ${animateProducts ? 'animate' : ''} stagger-${(index % 8) + 1}`}
                                 >
-                                    <img 
-                                        src={img} 
-                                        alt={`Diamond Product ${index}`} 
-                                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" 
-                                        loading="lazy" 
+                                    <img
+                                        src={img}
+                                        alt={`Diamond Product ${index}`}
+                                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                        loading="lazy"
                                     />
                                 </div>
                             ))}
@@ -422,7 +351,7 @@ const Products = () => {
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             {filteredProducts.map((product, index) => (
-                                <div 
+                                <div
                                     key={product.id}
                                     className={`product-item ${animateProducts ? 'animate' : ''} stagger-${(index % 8) + 1}`}
                                 >
@@ -431,6 +360,68 @@ const Products = () => {
                             ))}
                         </div>
                     )}
+                </div>
+                {/* Shop By Gender Section */}
+                <div
+                    ref={el => sectionRefs.current[0] = el}
+                    className="mb-16"
+                >
+                    <div className="text-center mt-20 mb-8">
+                        <h2 className="text-4xl font-serif font-bold text-dark mb-8 animate-header">
+                            Shop By Gender
+                        </h2>
+
+                        {/* Gender Tabs */}
+                        <div className="flex justify-center items-center gap-2 text-2xl font-serif mb-12 animate-tabs">
+                            <span
+                                onClick={() => setSelectedGender('Women')}
+                                className={`cursor-pointer transition-colors ${selectedGender === 'Women'
+                                    ? 'text-primary font-bold'
+                                    : 'text-gray-600 hover:text-primary hover:underline'
+                                    }`}
+                            >
+                                Women's Jewellery
+                            </span>
+                            <span className="text-gray-400">|</span>
+                            <span
+                                onClick={() => setSelectedGender('Men')}
+                                className={`cursor-pointer transition-colors ${selectedGender === 'Men'
+                                    ? 'text-primary font-bold'
+                                    : 'text-gray-600 hover:text-primary hover:underline'
+                                    }`}
+                            >
+                                Men's Jewellery
+                            </span>
+                            <span className="text-gray-400">|</span>
+                            <span
+                                onClick={() => setSelectedGender('Kids')}
+                                className={`cursor-pointer transition-colors ${selectedGender === 'Kids'
+                                    ? 'text-primary font-bold'
+                                    : 'text-gray-600 hover:text-primary hover:underline'
+                                    }`}
+                            >
+                                Kids Jewellery
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Gender Images */}
+                    <div className="mb-12">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            {genderImages[selectedGender].map((img, index) => (
+                                <div
+                                    key={`${selectedGender}-${index}`}
+                                    className={`relative overflow-hidden group cursor-pointer rounded-lg aspect-[403/423] gender-image animate delay-${index + 1}`}
+                                >
+                                    <img
+                                        src={img}
+                                        alt={`${selectedGender} Jewellery ${index + 1}`}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

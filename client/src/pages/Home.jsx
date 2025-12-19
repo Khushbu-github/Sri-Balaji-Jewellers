@@ -3,10 +3,9 @@ import { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import All from '../assets/All.jpg';
-import G1 from '../assets/GB.jpg';
-import S4 from '../assets/SB.jpg';
-import D4 from '../assets/DB.jpg';
+import G1 from '../assets/BG.jpeg';
+import S4 from '../assets/BS.jpeg';
+import D4 from '../assets/BD.jpeg';
 import Banner1 from '../assets/Banner1.png';
 import Banner2 from '../assets/Banner2.png';
 import Banner3 from '../assets/Banner3.png';
@@ -15,6 +14,9 @@ import C2 from '../assets/G6.jpg';
 import C3 from '../assets/G5.jpg';
 import Silver1 from '../assets/Silver1.png';
 import Silver2 from '../assets/Silver2.png';
+import GoldA1 from "../assets/GoldA1.jpeg";
+import GoldA2 from "../assets/GoldA2.jpeg";
+
 import Earing1 from '../assets/Earing1.png';
 import Earing2 from '../assets/Earing2.png';
 import Earing3 from '../assets/Earing3.png';
@@ -32,7 +34,7 @@ const Home = () => {
 
   useEffect(() => {
     const observers = [];
-    
+
     sectionRefs.current.forEach((ref, index) => {
       if (ref) {
         const observer = new IntersectionObserver(
@@ -45,7 +47,7 @@ const Home = () => {
           },
           { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
         );
-        
+
         observer.observe(ref);
         observers.push(observer);
       }
@@ -204,8 +206,8 @@ const Home = () => {
 
       {/* Hero Section Carousel */}
       <div className="relative w-full bg-dark overflow-hidden">
-        
-        
+
+
         <div className="block md:hidden">
           <Slider {...settings} className="w-full">
             {mobileSlides.map((slide, index) => (
@@ -222,14 +224,24 @@ const Home = () => {
       </div>
 
       {/* Handpicked Collection */}
-      <section 
+      <section
         ref={el => sectionRefs.current[0] = el}
         className={`py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-amber-50 to-white animate-section ${visibleSections.has(0) ? 'visible' : ''}`}
       >
         <div className="max-w-7xl mx-auto">
+          <div className="hidden md:block text-center mb-10 animate-item-1 visible">
+            <h1 className="text-3xl md:text-5xl font-bold text-amber-900 mb-4">
+              Welcome to Sri Balaji Jewellers
+            </h1>
+            <p className="text-lg md:text-xl text-gray-700 max-w-4xl mx-auto italic">
+              Experience the perfect blend of trust, purity, and timeless craftsmanship.
+              Your destination for exquisite jewellery in Bengaluru.
+            </p>
+          </div>
+
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-2 sm:mb-3 text-amber-900">Handpicked Just for You!</h2>
           <p className="text-center text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 md:mb-10">Our lightweight collection keeps you stylish and comfortable from dawn to dusk</p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
             <div className={`md:col-span-1 h-[400px] md:h-[600px] relative overflow-hidden group cursor-pointer rounded-lg animate-item-1 ${visibleSections.has(0) ? 'visible' : ''}`}>
               <img
@@ -258,36 +270,95 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Silver Collection */}
-      <section 
-        ref={el => sectionRefs.current[1] = el}
-        className={`py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gray-50 animate-section ${visibleSections.has(1) ? 'visible' : ''}`}
+      {/* Gold Collection */}
+      {/* Gold Collection */}
+      <section
+        ref={el => (sectionRefs.current[2] = el)}
+        className={`py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gray-50 animate-section ${visibleSections.has(2) ? "visible" : ""
+          }`}
       >
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-2 sm:mb-3 text-gray-800">Silver Collection</h2>
-          <p className="text-center text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 md:mb-10">Where tradition meets silver sophistication!</p>
-          
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-2 sm:mb-3 text-gray-800">
+            Gold Collection
+          </h2>
+          <p className="text-center text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 md:mb-10">
+            Timeless gold crafted for every celebration!
+          </p>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-item-1 ${visibleSections.has(1) ? 'visible' : ''}`}>
-              <img 
-                src={Silver1} 
-                alt="Silver Collection 1" 
-                className="w-full h-96 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-             
+            {/* Image 1 */}
+            <div
+              className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-item-1 ${visibleSections.has(2) ? "visible" : ""
+                }`}
+            >
+              <div className="aspect-[1526/1024] w-full overflow-hidden">
+                <img
+                  src={GoldA1}
+                  alt="Gold Collection 1"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
+            {/* Image 2 */}
+            <div
+              className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-item-2 ${visibleSections.has(2) ? "visible" : ""
+                }`}
+            >
+              <div className="aspect-[1526/1024] w-full overflow-hidden">
+                <img
+                  src={GoldA2}
+                  alt="Gold Collection 2"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Silver Collection */}
+      <section
+        ref={el => (sectionRefs.current[1] = el)}
+        className={`py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gray-50 animate-section ${visibleSections.has(1) ? "visible" : ""
+          }`}
+      >
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-2 sm:mb-3 text-gray-800">
+            Silver Collection
+          </h2>
+          <p className="text-center text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 md:mb-10">
+            Where tradition meets silver sophistication!
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Image 1 */}
+            <div
+              className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-item-1 ${visibleSections.has(1) ? "visible" : ""
+                }`}
+            >
+              <div className="aspect-[1526/1024] w-full overflow-hidden">
+                <img
+                  src={Silver1}
+                  alt="Silver Collection 1"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
             </div>
-            
-            <div className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-item-2 ${visibleSections.has(1) ? 'visible' : ''}`}>
-              <img 
-                src={Silver2} 
-                alt="Silver Collection 2" 
-                className="w-full h-96 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-               
+
+            {/* Image 2 */}
+            <div
+              className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-item-2 ${visibleSections.has(1) ? "visible" : ""
+                }`}
+            >
+              <div className="aspect-[1526/1024] w-full overflow-hidden">
+                <img
+                  src={Silver2}
+                  alt="Silver Collection 2"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
             </div>
           </div>
@@ -295,7 +366,7 @@ const Home = () => {
       </section>
 
       {/* Earring Collection */}
-      <section 
+      <section
         ref={el => sectionRefs.current[2] = el}
         className={`py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-white animate-section ${visibleSections.has(2) ? 'visible' : ''}`}
       >
@@ -304,8 +375,8 @@ const Home = () => {
           <p className="text-center text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 md:mb-10">Our Exclusive Earring Collection</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
             {[Earing1, Earing2, Earing3, Earing4].map((earing, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`relative overflow-hidden group cursor-pointer rounded-lg aspect-[405/219] animate-scale ${visibleSections.has(2) ? 'visible' : ''} stagger-${index + 1}`}
               >
                 <img
@@ -320,26 +391,26 @@ const Home = () => {
       </section>
 
       {/* Gemstone Jewellery */}
-      <section 
+      <section
         ref={el => sectionRefs.current[3] = el}
         className={`py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-amber-50 to-white animate-section ${visibleSections.has(3) ? 'visible' : ''}`}
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-2 sm:mb-3 text-amber-900">Gemstone Jewellery</h2>
           <p className="text-center text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 md:mb-10">Capturing timeless grace in each precious stone</p>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[Gold1, Gold2, Gold3, Gold4].map((gold, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 bg-white animate-scale ${visibleSections.has(3) ? 'visible' : ''} stagger-${index + 1}`}
               >
-                <img 
-                  src={gold} 
-                  alt={`Gold ${index + 1}`} 
+                <img
+                  src={gold}
+                  alt={`Gold ${index + 1}`}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-               
+
               </div>
             ))}
           </div>
@@ -347,38 +418,22 @@ const Home = () => {
       </section>
 
       {/* Our Collections */}
-      <section 
+      <section
         ref={el => sectionRefs.current[4] = el}
         className={`py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gray-50 animate-section ${visibleSections.has(4) ? 'visible' : ''}`}
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 text-gray-800">Our Collections</h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link 
-              to="/products" 
-              className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale ${visibleSections.has(4) ? 'visible' : ''} stagger-1`}
-            >
-              <img 
-                src={All} 
-                alt="All Jewellery" 
-                className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-end pb-6">
-                <h3 className="text-white text-2xl font-bold mb-2">All Jewellery</h3>
-                <span className="text-white text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
-                  Discover →
-                </span>
-              </div>
-            </Link>
 
-            <Link 
-              to="/products" 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <Link
+              to="/products?category=Gold"
               className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale ${visibleSections.has(4) ? 'visible' : ''} stagger-2`}
             >
-              <img 
-                src={G1} 
-                alt="Gold Collection" 
+              <img
+                src={G1}
+                alt="Gold Collection"
                 className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-end pb-6">
@@ -389,13 +444,13 @@ const Home = () => {
               </div>
             </Link>
 
-            <Link 
-              to="/products" 
+            <Link
+              to="/products?category=Silver"
               className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale ${visibleSections.has(4) ? 'visible' : ''} stagger-3`}
             >
-              <img 
-                src={S4} 
-                alt="Silver Collection" 
+              <img
+                src={S4}
+                alt="Silver Collection"
                 className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-end pb-6">
@@ -406,13 +461,13 @@ const Home = () => {
               </div>
             </Link>
 
-            <Link 
-              to="/products" 
+            <Link
+              to="/products?category=Diamond"
               className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale ${visibleSections.has(4) ? 'visible' : ''} stagger-4`}
             >
-              <img 
-                src={D4} 
-                alt="Diamond Collection" 
+              <img
+                src={D4}
+                alt="Diamond Collection"
                 className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-end pb-6">
@@ -427,27 +482,27 @@ const Home = () => {
       </section>
 
       {/* About Section Teaser */}
-      <section 
+      <section
         ref={el => sectionRefs.current[5] = el}
         className={`py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 text-white animate-section ${visibleSections.has(5) ? 'visible' : ''}`}
         style={{ backgroundColor: 'rgb(82, 32, 30)' }}
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12">Why Choose Us?</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className={`text-center p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-all duration-300 animate-scale ${visibleSections.has(5) ? 'visible' : ''} stagger-1`}>
               <div className="text-4xl mb-4">✦</div>
               <h3 className="text-xl font-bold mb-2">Certified Purity</h3>
               <p className="text-amber-100">100% Hallmarked Gold and Certified Diamonds.</p>
             </div>
-            
+
             <div className={`text-center p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-all duration-300 animate-scale ${visibleSections.has(5) ? 'visible' : ''} stagger-2`}>
               <div className="text-4xl mb-4">✦</div>
               <h3 className="text-xl font-bold mb-2">Custom Designs</h3>
               <p className="text-amber-100">Bring your dream design to life with our expert craftsmen.</p>
             </div>
-            
+
             <div className={`text-center p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-all duration-300 animate-scale ${visibleSections.has(5) ? 'visible' : ''} stagger-3`}>
               <div className="text-4xl mb-4">✦</div>
               <h3 className="text-xl font-bold mb-2">Heritage & Trust</h3>
@@ -458,246 +513,246 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-    <section 
-  ref={el => sectionRefs.current[6] = el}
-  className={`py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-white to-amber-50 animate-section ${visibleSections.has(6) ? 'visible' : ''}`}
->
-  <div className="max-w-7xl mx-auto">
-    {/* Header */}
-    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-2 sm:mb-3 md:mb-4 text-amber-900 px-4">
-      What Our Customers Say
-    </h2>
-    <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-      Precious moments, priceless memories
-    </p>
-    
-    {/* Testimonials Slider */}
-    <div className="pb-8 sm:pb-10 md:pb-12">
-      <Slider {...{
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3500,
-        arrows: true,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              arrows: true,
-            }
-          },
-          {
-            breakpoint: 640,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              arrows: false,
-              dots: true,
-            }
-          }
-        ]
-      }}>
-        {/* Testimonial 1 */}
-        <div className="px-2 sm:px-3 py-4 sm:py-6">
-          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
-            <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
-              <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
-                "
-              </div>
-            </div>
-            <div className="mt-6 sm:mt-8 flex flex-col h-full">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
-                  ★★★★★
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
-                "Absolutely stunning designs! I bought my wedding jewelry from Sri Balaji Jewellers and received countless compliments. The craftsmanship is impeccable and the staff was so helpful."
-              </p>
-              <div className="flex items-center mt-auto">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
-                  P
-                </div>
-                <div className="ml-3 sm:ml-4">
-                  <h4 className="font-bold text-gray-900 text-sm sm:text-base">Priya Sharma</h4>
-                  <p className="text-xs sm:text-sm text-gray-500">Jayanagar, Bengaluru</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Testimonial 2 */}
-        <div className="px-2 sm:px-3 py-4 sm:py-6">
-          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
-            <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
-              <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
-                "
-              </div>
-            </div>
-            <div className="mt-6 sm:mt-8 flex flex-col h-full">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
-                  ★★★★★
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
-                "The custom design service is exceptional! They brought my vision to life perfectly. The quality of gold and diamonds is certified and genuine. Highly recommended!"
-              </p>
-              <div className="flex items-center mt-auto">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
-                  R
-                </div>
-                <div className="ml-3 sm:ml-4">
-                  <h4 className="font-bold text-gray-900 text-sm sm:text-base">Rajesh Kumar</h4>
-                  <p className="text-xs sm:text-sm text-gray-500">Indiranagar, Bengaluru</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Testimonial 3 */}
-        <div className="px-2 sm:px-3 py-4 sm:py-6">
-          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
-            <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
-              <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
-                "
-              </div>
-            </div>
-            <div className="mt-6 sm:mt-8 flex flex-col h-full">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
-                  ★★★★★
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
-                "A family tradition for three generations! The trust and transparency Sri Balaji Jewellers offers is unmatched. Their silver collection is absolutely gorgeous."
-              </p>
-              <div className="flex items-center mt-auto">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
-                  A
-                </div>
-                <div className="ml-3 sm:ml-4">
-                  <h4 className="font-bold text-gray-900 text-sm sm:text-base">Ananya Reddy</h4>
-                  <p className="text-xs sm:text-sm text-gray-500">Koramangala, Bengaluru</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Testimonial 4 */}
-        <div className="px-2 sm:px-3 py-4 sm:py-6">
-          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
-            <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
-              <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
-                "
-              </div>
-            </div>
-            <div className="mt-6 sm:mt-8 flex flex-col h-full">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
-                  ★★★★★
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
-                "Beautiful gemstone collection! I purchased an emerald necklace and it's even more stunning in person. The staff explained everything about the stones. Very knowledgeable team."
-              </p>
-              <div className="flex items-center mt-auto">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
-                  M
-                </div>
-                <div className="ml-3 sm:ml-4">
-                  <h4 className="font-bold text-gray-900 text-sm sm:text-base">Meera Iyer</h4>
-                  <p className="text-xs sm:text-sm text-gray-500">Malleshwaram, Bengaluru</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Testimonial 5 */}
-        <div className="px-2 sm:px-3 py-4 sm:py-6">
-          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
-            <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
-              <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
-                "
-              </div>
-            </div>
-            <div className="mt-6 sm:mt-8 flex flex-col h-full">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
-                  ★★★★★
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
-                "Best place for bridal jewelry! The collection is vast and they helped me choose pieces that perfectly matched my outfit. The hallmarking certificate gave me complete peace of mind."
-              </p>
-              <div className="flex items-center mt-auto">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
-                  S
-                </div>
-                <div className="ml-3 sm:ml-4">
-                  <h4 className="font-bold text-gray-900 text-sm sm:text-base">Sneha Patel</h4>
-                  <p className="text-xs sm:text-sm text-gray-500">Whitefield, Bengaluru</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Testimonial 6 */}
-        <div className="px-2 sm:px-3 py-4 sm:py-6">
-          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
-            <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
-              <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
-                "
-              </div>
-            </div>
-            <div className="mt-6 sm:mt-8 flex flex-col h-full">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
-                  ★★★★★
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
-                "Excellent service and fair pricing! I've been buying from them for years. The exchange policy is transparent and they always update me on gold rates. Truly trustworthy jewelers."
-              </p>
-              <div className="flex items-center mt-auto">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
-                  V
-                </div>
-                <div className="ml-3 sm:ml-4">
-                  <h4 className="font-bold text-gray-900 text-sm sm:text-base">Vikram Singh</h4>
-                  <p className="text-xs sm:text-sm text-gray-500">HSR Layout, Bengaluru</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Slider>
-    </div>
-
-    {/* Call-to-action */}
-    <div className="text-center mt-6 sm:mt-8 px-4">
-      <p className="text-gray-600 mb-3 sm:mb-4 text-base sm:text-lg md:text-xl">
-        Join our family of satisfied customers
-      </p>
-      <Link 
-        to="/contact" 
-        className="inline-block bg-amber-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-amber-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+      <section
+        ref={el => sectionRefs.current[6] = el}
+        className={`py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-white to-amber-50 animate-section ${visibleSections.has(6) ? 'visible' : ''}`}
       >
-        Visit Our Store
-      </Link>
-    </div>
-  </div>
-</section>
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-2 sm:mb-3 md:mb-4 text-amber-900 px-4">
+            What Our Customers Say
+          </h2>
+          <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
+            Precious moments, priceless memories
+          </p>
+
+          {/* Testimonials Slider */}
+          <div className="pb-8 sm:pb-10 md:pb-12">
+            <Slider {...{
+              dots: true,
+              infinite: true,
+              speed: 500,
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              autoplay: true,
+              autoplaySpeed: 3500,
+              arrows: true,
+              responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    arrows: true,
+                  }
+                },
+                {
+                  breakpoint: 640,
+                  settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    dots: true,
+                  }
+                }
+              ]
+            }}>
+              {/* Testimonial 1 */}
+              <div className="px-2 sm:px-3 py-4 sm:py-6">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+                  <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
+                    <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
+                      "
+                    </div>
+                  </div>
+                  <div className="mt-6 sm:mt-8 flex flex-col h-full">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
+                        ★★★★★
+                      </div>
+                    </div>
+                    <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
+                      "Absolutely stunning designs! I bought my wedding jewelry from Sri Balaji Jewellers and received countless compliments. The craftsmanship is impeccable and the staff was so helpful."
+                    </p>
+                    <div className="flex items-center mt-auto">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                        P
+                      </div>
+                      <div className="ml-3 sm:ml-4">
+                        <h4 className="font-bold text-gray-900 text-sm sm:text-base">Priya Sharma</h4>
+                        <p className="text-xs sm:text-sm text-gray-500">Jayanagar, Bengaluru</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Testimonial 2 */}
+              <div className="px-2 sm:px-3 py-4 sm:py-6">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+                  <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
+                    <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
+                      "
+                    </div>
+                  </div>
+                  <div className="mt-6 sm:mt-8 flex flex-col h-full">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
+                        ★★★★★
+                      </div>
+                    </div>
+                    <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
+                      "The custom design service is exceptional! They brought my vision to life perfectly. The quality of gold and diamonds is certified and genuine. Highly recommended!"
+                    </p>
+                    <div className="flex items-center mt-auto">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                        R
+                      </div>
+                      <div className="ml-3 sm:ml-4">
+                        <h4 className="font-bold text-gray-900 text-sm sm:text-base">Rajesh Kumar</h4>
+                        <p className="text-xs sm:text-sm text-gray-500">Indiranagar, Bengaluru</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Testimonial 3 */}
+              <div className="px-2 sm:px-3 py-4 sm:py-6">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+                  <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
+                    <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
+                      "
+                    </div>
+                  </div>
+                  <div className="mt-6 sm:mt-8 flex flex-col h-full">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
+                        ★★★★★
+                      </div>
+                    </div>
+                    <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
+                      "A family tradition for three generations! The trust and transparency Sri Balaji Jewellers offers is unmatched. Their silver collection is absolutely gorgeous."
+                    </p>
+                    <div className="flex items-center mt-auto">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                        A
+                      </div>
+                      <div className="ml-3 sm:ml-4">
+                        <h4 className="font-bold text-gray-900 text-sm sm:text-base">Ananya Reddy</h4>
+                        <p className="text-xs sm:text-sm text-gray-500">Koramangala, Bengaluru</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Testimonial 4 */}
+              <div className="px-2 sm:px-3 py-4 sm:py-6">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+                  <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
+                    <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
+                      "
+                    </div>
+                  </div>
+                  <div className="mt-6 sm:mt-8 flex flex-col h-full">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
+                        ★★★★★
+                      </div>
+                    </div>
+                    <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
+                      "Beautiful gemstone collection! I purchased an emerald necklace and it's even more stunning in person. The staff explained everything about the stones. Very knowledgeable team."
+                    </p>
+                    <div className="flex items-center mt-auto">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                        M
+                      </div>
+                      <div className="ml-3 sm:ml-4">
+                        <h4 className="font-bold text-gray-900 text-sm sm:text-base">Meera Iyer</h4>
+                        <p className="text-xs sm:text-sm text-gray-500">Malleshwaram, Bengaluru</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Testimonial 5 */}
+              <div className="px-2 sm:px-3 py-4 sm:py-6">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+                  <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
+                    <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
+                      "
+                    </div>
+                  </div>
+                  <div className="mt-6 sm:mt-8 flex flex-col h-full">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
+                        ★★★★★
+                      </div>
+                    </div>
+                    <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
+                      "Best place for bridal jewelry! The collection is vast and they helped me choose pieces that perfectly matched my outfit. The hallmarking certificate gave me complete peace of mind."
+                    </p>
+                    <div className="flex items-center mt-auto">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                        S
+                      </div>
+                      <div className="ml-3 sm:ml-4">
+                        <h4 className="font-bold text-gray-900 text-sm sm:text-base">Sneha Patel</h4>
+                        <p className="text-xs sm:text-sm text-gray-500">Whitefield, Bengaluru</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Testimonial 6 */}
+              <div className="px-2 sm:px-3 py-4 sm:py-6">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-2xl transition-shadow duration-300 relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px]">
+                  <div className="absolute -top-3 sm:-top-4 left-4 sm:left-6">
+                    <div className="bg-amber-400 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
+                      "
+                    </div>
+                  </div>
+                  <div className="mt-6 sm:mt-8 flex flex-col h-full">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex text-amber-400 text-base sm:text-lg md:text-xl">
+                        ★★★★★
+                      </div>
+                    </div>
+                    <p className="text-gray-700 mb-4 sm:mb-6 italic text-xs sm:text-sm md:text-base flex-grow leading-relaxed">
+                      "Excellent service and fair pricing! I've been buying from them for years. The exchange policy is transparent and they always update me on gold rates. Truly trustworthy jewelers."
+                    </p>
+                    <div className="flex items-center mt-auto">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                        V
+                      </div>
+                      <div className="ml-3 sm:ml-4">
+                        <h4 className="font-bold text-gray-900 text-sm sm:text-base">Vikram Singh</h4>
+                        <p className="text-xs sm:text-sm text-gray-500">HSR Layout, Bengaluru</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Slider>
+          </div>
+
+          {/* Call-to-action */}
+          <div className="text-center mt-6 sm:mt-8 px-4">
+            <p className="text-gray-600 mb-3 sm:mb-4 text-base sm:text-lg md:text-xl">
+              Join our family of satisfied customers
+            </p>
+            <Link
+              to="/contact"
+              className="inline-block bg-amber-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:bg-amber-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+            >
+              Visit Our Store
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

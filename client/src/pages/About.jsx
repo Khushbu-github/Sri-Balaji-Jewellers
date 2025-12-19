@@ -3,10 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 import Banner1 from '../assets/Banner1.png';
 import Banner2 from '../assets/Banner2.png';
 import Banner3 from '../assets/Banner3.png';
-import C1 from '../assets/C1.jpg';
-import C2 from '../assets/C2.jpg';
-import C3 from '../assets/C3.jpg';
-import Silver1 from '../assets/S4.jpg';
+import C1 from '../assets/BD.jpeg';
+import C2 from '../assets/BG.jpeg';
+import C3 from '../assets/All.jpg';
+import Silver1 from '../assets/BS.jpeg';
 import Gold1 from '../assets/Gold1.png';
 import Slider from 'react-slick';
 
@@ -16,7 +16,7 @@ const About = () => {
 
     useEffect(() => {
         const observers = [];
-        
+
         sectionRefs.current.forEach((ref, index) => {
             if (ref) {
                 const observer = new IntersectionObserver(
@@ -29,7 +29,7 @@ const About = () => {
                     },
                     { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
                 );
-                
+
                 observer.observe(ref);
                 observers.push(observer);
             }
@@ -212,7 +212,7 @@ const About = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 {/* Our Story */}
-                <div 
+                <div
                     ref={el => sectionRefs.current[0] = el}
                     className="mb-20"
                 >
@@ -229,20 +229,44 @@ const About = () => {
                         </div>
                         <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                             <p className={`animate-right ${visibleSections.has(0) ? 'visible' : ''} text-stagger-1`}>
-                                Welcome to <span className="font-bold text-primary">Sri Balaji Jewellers</span>, your trusted destination for exquisite gold, silver, and diamond jewellery in Bengaluru. Founded by <span className="font-bold text-primary">Darshan Milak</span> and <span className="font-bold text-primary">Namratha Milak</span>, we have been dedicated to bringing you the finest craftsmanship and certified purity in every piece we create.
+                                <span className="font-bold text-primary">Sri Balaji Jewellers</span> is a name synonymous with trust, purity, and fine craftsmanship in the heart of Bengaluru. Conveniently located at Yashaswini Arcade, 1331, 50 Feet Main Road, Kumaraswamy Layout, Bengaluru – 560078, we are proud to be a one-stop destination for premium gold, silver, and diamond jewellery that blends tradition with modern elegance.
                             </p>
                             <p className={`animate-right ${visibleSections.has(0) ? 'visible' : ''} text-stagger-2`}>
-                                Located in the heart of Kumaraswamy Layout, our showroom at Yashaswini Arcade has become a landmark for quality jewellery and exceptional customer service. We take pride in our legacy of trust, transparency, and timeless designs that celebrate every precious moment of your life.
+                                With years of experience and deep understanding of customer preferences, Sri Balaji Jewellers offers an extensive range of jewellery articles crafted for every age group and every occasion. From children to elders, from everyday wear to grand celebrations, our collections are thoughtfully designed to cater to diverse tastes and lifestyles. We specialize in lightweight jewellery with unique and modern designs, ensuring comfort without compromising on beauty, purity, or value.
                             </p>
                             <p className={`animate-right ${visibleSections.has(0) ? 'visible' : ''} text-stagger-3`}>
-                                Our commitment to excellence is reflected in every piece of jewellery we offer. From traditional South Indian designs to contemporary styles, we cater to diverse tastes and occasions, ensuring that each customer finds something truly special.
+                                Our showroom features a wide variety of gold, silver, and diamond jewellery, including necklaces, chains, bangles, bracelets, earrings, rings, pendants, mangalsutras, anklets, and complete bridal sets. Whether you are preparing for a wedding, celebrating a festival, marking a milestone, or simply looking for elegant daily-wear jewellery, our carefully curated collections offer something special for everyone.
                             </p>
                         </div>
+                    </div>
+
+                    <div className="mt-12 space-y-8 text-gray-700 text-lg leading-relaxed">
+                        <p className={`animate-section ${visibleSections.has(0) ? 'visible' : ''}`}>
+                            We take particular pride in our bridal jewellery collections, which are designed to complement both traditional and contemporary bridal styles. From classic South Indian bridal sets to modern, minimalistic designs, our bridal range reflects richness, elegance, and cultural heritage. Our festive collections capture the true spirit of celebration, offering jewellery that enhances the joy and vibrancy of every occasion—from Diwali and Akshaya Tritiya to weddings and family functions.
+                        </p>
+                        <p className={`animate-section ${visibleSections.has(0) ? 'visible' : ''}`}>
+                            At Sri Balaji Jewellers, quality is never compromised. We deal only in best-quality gold, silver, and diamonds, maintaining strict standards in purity, craftsmanship, and finishing. Every piece is created with attention to detail, ensuring long-lasting beauty and customer satisfaction. Transparency and honesty are at the core of our business, making us a trusted jeweller for generations of families.
+                        </p>
+                        <p className={`animate-section ${visibleSections.has(0) ? 'visible' : ''}`}>
+                            In addition to ready collections, we also offer customised jewellery services. Understanding that every customer is unique, we work closely with you to design jewellery that reflects your personal style, occasion, and budget. From concept to creation, our skilled craftsmen bring your ideas to life with precision and care.
+                        </p>
+                        <p className={`animate-section ${visibleSections.has(0) ? 'visible' : ''}`}>
+                            Our expertise extends across various jewellery styles and techniques, including Kundan jewellery, Electro-form jewellery, CAD-designed jewellery, and many more contemporary and traditional forms. These advanced techniques allow us to create intricate designs, lightweight structures, and innovative patterns that appeal to modern preferences while preserving timeless charm.
+                        </p>
+                        <p className={`animate-section ${visibleSections.has(0) ? 'visible' : ''}`}>
+                            We continuously update our collections to stay in tune with changing trends, offering designs that range from modern and minimalist to classic and traditional. Whether you prefer subtle elegance or bold statement pieces, our diverse range ensures that you find jewellery that resonates with your personality.
+                        </p>
+                        <p className={`animate-section ${visibleSections.has(0) ? 'visible' : ''}`}>
+                            At Sri Balaji Jewellers, jewellery is more than just an accessory—it is an expression of emotion, tradition, and individuality. Our commitment to excellence, wide range of designs, customization options, and customer-first approach make us a preferred choice for jewellery lovers in Bengaluru.
+                        </p>
+                        <p className={`animate-section ${visibleSections.has(0) ? 'visible' : ''} font-bold text-primary text-center text-2xl pt-8`}>
+                            We warmly invite you to visit our showroom and experience the perfect blend of craftsmanship, quality, and trust.
+                        </p>
                     </div>
                 </div>
 
                 {/* Our Collections */}
-                <div 
+                <div
                     ref={el => sectionRefs.current[1] = el}
                     className={`mb-20 bg-white p-12 rounded-xl shadow-lg animate-section ${visibleSections.has(1) ? 'visible' : ''}`}
                 >
@@ -296,7 +320,7 @@ const About = () => {
                 </div>
 
                 {/* Why Choose Us */}
-                <div 
+                <div
                     ref={el => sectionRefs.current[2] = el}
                     className="mb-20"
                 >
@@ -347,7 +371,7 @@ const About = () => {
                 </div>
 
                 {/* Visit Us */}
-                <div 
+                <div
                     ref={el => sectionRefs.current[3] = el}
                     className={`bg-gradient-to-r from-primary to-yellow-600 text-white p-12 rounded-xl shadow-2xl animate-section ${visibleSections.has(3) ? 'visible' : ''}`}
                 >
